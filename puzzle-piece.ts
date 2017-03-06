@@ -1,5 +1,10 @@
 class PuzzlePiece extends HTMLElement{
 
+    static 
+    get is() : string {
+        return 'puzzle-piece'
+    }
+    
     constructor(){
         super();
         console.dir(document.currentScript);
@@ -52,4 +57,4 @@ class PuzzlePiece extends HTMLElement{
      
 
 };
-customElements.define('puzzle-piece', PuzzlePiece);
+customElements.define(PuzzlePiece.is, PuzzlePiece);
