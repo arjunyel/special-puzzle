@@ -1,0 +1,42 @@
+<link rel="import" href="puzzle-piece.html">
+<script defer src="special-puzzle.js"></script>
+
+<template id="container-grid">
+    <style>
+        :host{
+            font-family: 'roboto slab';
+
+        }
+        #container{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; 
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0; 
+            flex-direction: row;
+        }
+        .flex-child{
+            flex-grow: 1;
+        }
+    </style>
+    <div id="container">
+       <div class="flex-child" id="proverbOut">
+           hi
+       </div> 
+       <div class="flex-child">
+           <slot></slot>
+       </div>
+       <div class="flex-child">
+           <slot></slot>
+       </div> 
+       <div class="flex-child">
+           adsd
+       </div> 
+    </div>
+</template>
+
+
