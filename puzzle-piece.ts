@@ -1,3 +1,5 @@
+var importedDoc = document.currentScript.ownerDocument;
+
 class PuzzlePiece extends HTMLElement{
 
     static 
@@ -8,7 +10,7 @@ class PuzzlePiece extends HTMLElement{
     constructor(){
         super();
         console.dir(document.currentScript);
-        const t = <HTMLTemplateElement>document.currentScript.ownerDocument.getElementById('piece-puzzle');
+        const t = <HTMLTemplateElement>importedDoc.getElementById('piece-puzzle');
         const shadowRoot = this.attachShadow({mode: 'open'});
         shadowRoot.appendChild(t.content.cloneNode(true));
      }
