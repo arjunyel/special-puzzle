@@ -8,7 +8,7 @@
 
         }
         #container{
-            display: flex;
+            display: grid;
             width: 100%;
             height: 100%;
             position: absolute;
@@ -16,15 +16,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            margin: 0; 
-            flex-direction: row;
+            margin: 0;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1 fr;
+            grid-gap: 10px;
         }
-        .flex-child{
-            flex-grow: 1;
+        ::slotted(*){
+            grid-column-start: auto;
+            grid-row-start: auto;
+
         }
     </style>
     <div id="container">
-       <div class="flex-child" id="proverbOut">
+       <!--<div class="flex-child" id="proverbOut">
            hi
        </div> 
        <div class="flex-child">
@@ -35,7 +39,8 @@
        </div> 
        <div class="flex-child">
            adsd
-       </div> 
+       </div>-->
+       <slot></slot> 
     </div>
 </template>
 
