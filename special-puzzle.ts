@@ -17,11 +17,12 @@ class SpecialPuzzle extends HTMLElement{
       */
      public append() {
             if(this.shadowRoot){
-                console.log("shadow root found")
-                const output = this.shadowRoot.querySelector('#proverbOut');
-                if(output){
-                    console.log("out found")
-                    output.textContent = this.proverb;
+                const proverb = this.proverb;
+                console.log(proverb);
+                for(let i = 0; i < proverb.length; i++){
+                    const piece = document.createElement('p');
+                    piece.textContent = proverb.charAt(i);
+                    this.shadowRoot.getElementById("container").appendChild(piece);
                 }
                 /*const addToGrid = document.createElement("puzzle-piece");
                 document.getElementsByTagName("special-puzzle")[0].appendChild(addToGrid);*/
