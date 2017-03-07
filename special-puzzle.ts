@@ -8,30 +8,23 @@ class SpecialPuzzle extends HTMLElement{
      }
 
      connectedCallback() {
-         console.log("COnnectd!")
-         this.append();
+         this.renderGrid();
      }
 
      /**
-      * append
+      * renderShadow
       */
-     public append() {
+     public renderGrid() {
             if(this.shadowRoot){
                 const proverb = this.proverb;
                 console.log(proverb);
                 for(let i = 0; i < proverb.length; i++){
                     const piece = document.createElement('p');
                     piece.textContent = proverb.charAt(i);
-                    this.shadowRoot.getElementById("container").appendChild(piece);
+                    const shadow = this.shadowRoot;
+                    shadow.getElementById("container").appendChild(piece);
                 }
-                /*const addToGrid = document.createElement("puzzle-piece");
-                document.getElementsByTagName("special-puzzle")[0].appendChild(addToGrid);*/
             }
-             /*const output = document.createElement("p");
-             output.textContent = this.proverb;
-             this.shadowRoot.appendChild(output);*/
-
-        
      }
 
      public get proverbList() : string[] {
@@ -51,7 +44,5 @@ class SpecialPuzzle extends HTMLElement{
          const proverb = list[Math.floor(Math.random()*list.length)];
          return proverb;
      }
-     
-
 };
 customElements.define('special-puzzle', SpecialPuzzle);
