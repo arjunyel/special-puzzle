@@ -3,7 +3,8 @@
         "target": "es6",
         "strictNullChecks": true,
         "removeComments": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "alwaysStrict": true
     },
     "files": [
         "./special-puzzle.ts",
