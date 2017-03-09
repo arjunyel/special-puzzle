@@ -1,47 +1,46 @@
-class SpecialPuzzle extends HTMLElement{
+class SpecialPuzzle extends HTMLElement {
 
-    constructor(){
+    constructor() {
         super();
-        const t = <HTMLTemplateElement>document.currentScript.ownerDocument.getElementById('container-grid');
-        const shadowRoot = this.attachShadow({mode: 'open'});
+        const t = document.currentScript.ownerDocument.getElementById("container-grid") as HTMLTemplateElement;
+        const shadowRoot = this.attachShadow({mode: "open"});
         shadowRoot.appendChild(t.content.cloneNode(true));
      }
 
-     connectedCallback() {
+     private connectedCallback() {
          this.renderGrid();
      }
 
      /**
       * renderShadow
       */
-     public renderGrid() {
-            if(this.shadowRoot){
+     private renderGrid() {
+            if (this.shadowRoot) {
                 const proverb = this.proverb;
-                console.log(proverb);
-                for(let i = 0; i < proverb.length; i++){
-                    const piece = document.createElement('puzzle-piece');
+                for (let i = 0; i < proverb.length; i++) {
+                    const piece = document.createElement("puzzle-piece");
                     piece.textContent = proverb.charAt(i);
                     this.shadowRoot.getElementById("container").appendChild(piece);
                 }
             }
      }
 
-     public get proverbList() : string[] {
+     private get proverbList(): string[] {
          const proverbList: string[] = [
             "Hope for the best but prepare for the worst",
             "Practice makes perfect",
             "A penny saved is a penny earned",
             "When in Rome do as the Romans do",
             "The early bird catches the worm",
-            "The cat is out of the bag"
+            "The cat is out of the bag",
         ];
-        return proverbList;
+         return proverbList;
      }
-     
-     public get proverb() : string {
-         const list = this.proverbList
-         const proverb = list[Math.floor(Math.random()*list.length)];
+
+     private get proverb(): string {
+         const list = this.proverbList;
+         const proverb = list[Math.floor(Math.random() * list.length)];
          return proverb;
      }
 };
-customElements.define('special-puzzle', SpecialPuzzle);
+customElements.define("special-puzzle", SpecialPuzzle);
