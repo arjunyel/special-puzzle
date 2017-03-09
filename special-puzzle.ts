@@ -19,10 +19,9 @@ class SpecialPuzzle extends HTMLElement{
                 const proverb = this.proverb;
                 console.log(proverb);
                 for(let i = 0; i < proverb.length; i++){
-                    const piece = document.createElement('p');
+                    const piece = document.createElement('puzzle-piece');
                     piece.textContent = proverb.charAt(i);
-                    const shadow = this.shadowRoot;
-                    shadow.getElementById("container").appendChild(piece);
+                    this.shadowRoot.getElementById("container").appendChild(piece);
                 }
             }
      }
