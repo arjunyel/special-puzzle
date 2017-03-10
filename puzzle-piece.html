@@ -8,16 +8,23 @@
             color: peru;
             text-align: center;
         }
+        :host([Revealed]:host){
+            color: transparent;
+        }
 
-        #box{
+        .box{
             width: 25px;
-            height: 25px;
+            height: 40px;
             background-color: steelblue;
         }
 
+        .space {
+            background-color: transparent;
+        }
+
     </style>
-    <div id="box">
-        <p id="ouput">10</p>
+    <div class="box">
+        <strong class="Revealed" id="out"></strong>
     </div>
     
 </template>
