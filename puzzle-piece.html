@@ -7,11 +7,12 @@
             font-size: 2em;
             color: peru;
             text-align: center;
-        }
-        :host([Revealed]:host){
-            color: transparent;
+            cursor: default;
         }
 
+        .hide {
+            visibility: hidden;
+        }
         .box{
             width: 25px;
             height: 40px;
@@ -24,7 +25,7 @@
 
     </style>
     <div class="box">
-        <strong class="Revealed" id="out"></strong>
+        <strong class="hide" id="out"></strong>
     </div>
     
 </template>

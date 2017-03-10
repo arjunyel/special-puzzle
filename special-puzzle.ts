@@ -1,3 +1,6 @@
+var clickCount = 0;
+var proverbLength = 0;
+
 class SpecialPuzzle extends HTMLElement {
 
     constructor() {
@@ -5,7 +8,12 @@ class SpecialPuzzle extends HTMLElement {
         const t = document.currentScript.ownerDocument.getElementById("container-grid") as HTMLTemplateElement;
         const shadowRoot = this.attachShadow({mode: "open"});
         shadowRoot.appendChild(t.content.cloneNode(true));
-        shadowRoot.addEventListener("click", this.childClick);
+        shadowRoot.getElementById("container").addEventListener("click", this.childClick);
+        shadowRoot.getElementById("guess").addEventListener("click", this.alerty);
+     }
+
+      public alerty() {
+        alert("hi!");
      }
 
      private connectedCallback() {
@@ -15,11 +23,17 @@ class SpecialPuzzle extends HTMLElement {
      private renderGrid() {
             if (this.shadowRoot) {
                 const proverb = this.proverb;
+                proverbLength = 0;
+                clickCount = 0;
                 const shadow = this.shadowRoot.getElementById("container") as HTMLElement;
+                shadow.innerHTML = "";
                 for (let i = 0; i < proverb.length; i++) {
                     const piece = document.createElement("puzzle-piece");
                     piece.value = proverb.charAt(i);
-                    piece.revealed = true;
+                    piece.notRevealed = true;
+                    if (proverb.charAt(i) !== " ") {
+                        proverbLength++;
+                    }
                     shadow.appendChild(piece);
                 }
             }
@@ -44,9 +58,16 @@ class SpecialPuzzle extends HTMLElement {
      }
 
      private childClick(e: Event) {
-        e.target.revealed = false;
+        if (e.target.notRevealed) {
+            if (e.target.value !== " ") {
+                e.target.notRevealed = false;
+                clickCount++;
+                if (clickCount > (proverbLength / 2)) {
+                    alert("half way!");
+                }
+            }
+        }
      }
-
 
 };
 customElements.define("special-puzzle", SpecialPuzzle);

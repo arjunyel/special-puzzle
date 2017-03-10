@@ -11,7 +11,7 @@ class PuzzlePiece extends HTMLElement {
      }
 
      static get oberservedAttributes() {
-         return ["value", "revealed"];
+         return ["value", "notRevealed"];
      }
 
      public set value(v: string) {
@@ -35,24 +35,26 @@ class PuzzlePiece extends HTMLElement {
         return "";
      }
 
-     public get revealed() {
-         return this.hasAttribute("revealed");
+     public get notRevealed() {
+         return this.hasAttribute("notRevealed");
      }
 
-     public set revealed(val) {
+     public set notRevealed(val) {
          if (val) {
-             this.setAttribute("revealed", "");
+             this.setAttribute("notRevealed", "");
          } else {
-             this.removeAttribute("revealed");
+             this.removeAttribute("notRevealed");
+             this.shadowRoot.querySelector("#out").className = "";
          }
      }
 
      private attributeChangedCallback(attr: string, oldValue: string|boolean, newValue: string|boolean) {
          if (attr === "value" ) {
              this.value = newValue as string;
-         } else if ((newValue === true || newValue === false) && attr === "revealed") {
-             this.revealed = newValue;
+         } else if ((newValue === true || newValue === false) && attr === "notRevealed") {
+             this.notRevealed = newValue;
          }
      }
+
 };
 customElements.define("puzzle-piece", PuzzlePiece);
